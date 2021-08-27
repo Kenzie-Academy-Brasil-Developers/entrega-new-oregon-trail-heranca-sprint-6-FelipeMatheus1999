@@ -1,12 +1,14 @@
 class Traveler {
-    constructor(name, isHealthy = "true", food = "1") {
+    constructor(name, isHealthy, food) {
         this.name = name;
-        this.food = Number(food);
         this.isHealthy = isHealthy;
+        this.food = Number(food);
     }
 
     hunt() {
         this.food += 2;
+
+        return this.food
     }
 
     eat() {
@@ -17,6 +19,8 @@ class Traveler {
         else {
             this.isHealthy = false;
         }
+
+        return this.isHealthy;
     }
 }
 

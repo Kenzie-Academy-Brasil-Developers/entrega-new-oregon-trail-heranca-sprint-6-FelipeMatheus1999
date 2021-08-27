@@ -20,5 +20,5 @@ module.exports = {
     viajante,
     cacador,
     medico,
-    carroca,
+    carroca
 }

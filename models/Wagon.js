@@ -1,37 +1,41 @@
 class Wagon {
     constructor(capacity) {
         this.capacity = capacity;
-        this.crew = [];
+        this.passengers = [];
     }
 
     getAvailableSeatCount() {
-        return this.capacity - this.crew.length;
+        if (this.passengers.length < this.capacity) {
+            return this.capacity - this.passengers.length;
+        }
+
+        return false;
     }
 
-    join(crewMember) {
-        if (this.capacity > this.crew.length) {
-            this.crew.push(crewMember);
+    join(passengersMember) {
+        let seats = this.getAvailableSeatCount()
+
+        if (seats !== false) {
+            this.passengers.push(passengersMember);
         }
+
+        return false;
     }
 
     shouldQuarantine() {
-        for (let i = 0; i < this.crew.length; i++) {
-            if (this.crew[i].isHealthy === false) {
+        for (let i = 0; i < this.passengers.length; i++) {
+            if (this.passengers[i].isHealthy === "false") {
                 return true;
             }
-
-            else {
-                return false;
-            }
         }
+
+        return false;
     }
 
     totalFood() {
-        this.crew.reduce(function(acc) {
-            acc += this.crew.food;
+        const total = this.passengers.reduce((acc, passengers) => acc + passengers.food, 0)
 
-            return acc;
-        }, 0)
+        return total;
     }
 }
 
